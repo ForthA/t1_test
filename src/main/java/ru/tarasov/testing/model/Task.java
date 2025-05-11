@@ -15,7 +15,7 @@ import lombok.Setter;
 import java.util.UUID;
 
 @Entity
-@Table(name = "task")
+@Table(name = "tasks")
 @Getter
 @Setter
 @NoArgsConstructor

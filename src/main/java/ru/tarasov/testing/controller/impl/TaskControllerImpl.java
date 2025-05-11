@@ -1,8 +1,6 @@
 package ru.tarasov.testing.controller.impl;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import ru.tarasov.testing.controller.TaskController;
 import ru.tarasov.testing.dto.TaskDto;
@@ -20,28 +18,27 @@ public class TaskControllerImpl implements TaskController {
     private final TaskService taskService;
 
     @Override
-    public ResponseEntity<List<TaskDto>> findAll() {
-        return new ResponseEntity<>(taskService.findAll(), HttpStatus.OK);
+    public List<TaskDto> findAll() {
+        return taskService.findAll();
     }
 
     @Override
-    public ResponseEntity<TaskDto> findById(UUID id) {
-        return new ResponseEntity<>(taskService.findById(id), HttpStatus.OK);
+    public TaskDto findById(UUID id) {
+        return taskService.findById(id);
     }
 
     @Override
-    public ResponseEntity<TaskDto> createTask(TaskRequestDto taskRequestDto) {
-        return new ResponseEntity<>(taskService.createTask(taskRequestDto), HttpStatus.CREATED);
+    public TaskDto createTask(TaskRequestDto taskRequestDto) {
+        return taskService.createTask(taskRequestDto);
     }
 
     @Override
-    public ResponseEntity<Void> deleteTask(UUID id) {
+    public void deleteTask(UUID id) {
         taskService.deleteTask(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @Override
-    public ResponseEntity<TaskDto> updateTask(UUID id, TaskUpdateDto taskUpdateDto) {
-        return new ResponseEntity<>(taskService.updateTask(id, taskUpdateDto), HttpStatus.ACCEPTED);
+    public TaskDto updateTask(UUID id, TaskUpdateDto taskUpdateDto) {
+        return taskService.updateTask(id, taskUpdateDto);
     }
 }
