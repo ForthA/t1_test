@@ -13,6 +13,42 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+  mail:
+    host: ${MAIL_HOST}
+    port: ${MAIL_PORT}
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    recipient: ${MAIL_RECIPIENT}
+    properties:
+      mail:
+        smtp:
+          auth: ${MAIL_SMTP_AUTH}
+          starttls:
+            enable: ${MAIL_SMTP_STARTTLS_ENABLE}
+
+kafka:
+  bootstrap:
+    server: localhost:9092
+  consumer:
+    group-id: t1-test
+  max:
+    partition:
+      fetch:
+        bytes: 300000
+    poll:
+      records: 10
+      interval:
+        ms: 30000
+  producer:
+    enable: true
+  topic:
+    mail_notification: t1-test_mail_notification
+  listener:
+    poll-timeout: 5000
+  session:
+    timeout:
+      ms: 15000
+
 
 logging:
   level:

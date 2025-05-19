@@ -11,6 +11,8 @@ public record TaskRequestDto(
         String title,
         String description,
         @NotNull(message = "userId is required")
-        Long userId
+        Long userId,
+        @NotNull(message = "task status should not be null")
+        String status
 ) {
 }
