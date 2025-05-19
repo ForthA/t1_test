@@ -17,8 +17,10 @@ import java.util.List;
 public class NotificationServiceImpl implements NotificationService {
 
     private final JavaMailSender javaMailSender;
+
     @Value("${spring.mail.username}")
     private String sender;
+
     @Value("${spring.mail.recipient}")
     private String recipient;
 
@@ -30,10 +32,9 @@ public class NotificationServiceImpl implements NotificationService {
         mailMessage.setTo(recipient);
         mailMessage.setText(formMessage(tasks));
         mailMessage.setSubject("Changes");
-        try{
+        try {
             javaMailSender.send(mailMessage);
         }
-
         catch (Exception e){
             log.error("Error while sending mail to {}", recipient);
         }

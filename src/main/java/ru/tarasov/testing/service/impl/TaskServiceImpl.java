@@ -66,9 +66,12 @@ public class TaskServiceImpl implements TaskService {
         Task task = taskRepository.findById(taskId)
                 .orElseThrow(() -> new TaskNotFoundException(taskId));
 
+        String status = task.getStatus();
         taskMapper.updateTaskFromTaskUpdateDto(taskUpdateDto, task);
         TaskDto taskDto = taskMapper.taskToTaskDto(taskRepository.save(task));
-        kafkaTaskProducer.sendTo(topic, taskDto);
+        if (!taskDto.status().equals(status)) {
+            kafkaTaskProducer.sendTo(topic, taskDto);
+        }
         return taskDto;
     }
 

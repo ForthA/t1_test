@@ -32,8 +32,4 @@ public class MessageDeserializer<T> extends JsonDeserializer<T> {
             return null;
         }
     }
-
-    private String getMessage(byte[] data){
-        return new String(data, StandardCharsets.UTF_8);
-    }
 }
