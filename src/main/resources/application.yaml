@@ -25,6 +25,8 @@ spring:
           auth: ${MAIL_SMTP_AUTH}
           starttls:
             enable: ${MAIL_SMTP_STARTTLS_ENABLE}
+  security:
+    secretKey: ${JWT_SECRET_KEY}
 
 kafka:
   bootstrap:
